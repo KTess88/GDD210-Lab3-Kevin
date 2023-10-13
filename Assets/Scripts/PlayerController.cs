@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
 	public float MouseSensitivity;
 	public Transform CamTransform;
 
-	private float camRotation = 0f;
+	
 
 	private void Start()
 	{
@@ -16,30 +17,30 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-		float mouseInputY = Input.GetAxis("Mouse Y") * MouseSensitivity;
-		camRotation -= mouseInputY;
-		camRotation = Mathf.Clamp(camRotation, -90f, 90f);
-		CamTransform.localRotation = Quaternion.Euler(new Vector3(camRotation, 0f, 0f));
+		float xmouseinput = Input.GetAxis("Mouse X");
+		float ymouseinput = Input.GetAxis("Mouse Y");
 
-		float mouseInputX = Input.GetAxis("Mouse X") * MouseSensitivity;
-		transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0f, mouseInputX, 0f));
+		transform.Rotate(new Vector3(0, xmouseinput * MouseSensitivity, 0));
+		CamTransform.Rotate(new Vector3(-ymouseinput * MouseSensitivity, 0, 0));
+
+		RaycastHit hit;
 
 		if (Input.GetMouseButtonDown(0))
 		{
-			RaycastHit hit;
-
 			if (Physics.Raycast(CamTransform.position, CamTransform.forward, out hit))
 			{
-				Debug.DrawLine(CamTransform.position + new Vector3(0f, -1f, 0f), hit.point, Color.green, 1f);
-				Debug.Log(hit.collider.gameObject.name);
-				Destroy(hit.collider.gameObject);
+				EnemyCube enemy = hit.collider.GetComponent<EnemyCube>();
 
-			}
-			else
-			{
-				Debug.DrawRay(CamTransform.position + new Vector3(0f, -1f, 0f), CamTransform.forward * 100f, Color.red, 1f);
+				if (enemy != null)
+				{
+					Destroy(hit.collider.gameObject);
+
+					SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+
+				}
 			}
 		}
+
 	}
 }
-
