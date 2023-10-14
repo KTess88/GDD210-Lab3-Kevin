@@ -2854,14 +2854,14 @@ RectTransform:
   m_GameObject: {fileID: 1119459674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.69065, y: 0.69065, z: 0.69065}
+  m_LocalScale: {x: 0.88596576, y: 0.88596576, z: 0.88596576}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 987724690}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -406, y: 277}
+  m_AnchoredPosition: {x: -684, y: 367}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1119459676
@@ -3860,7 +3860,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -3967,8 +3967,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935024167b95c463493ba9113ab8934d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseSensitivity: 15
+  MouseSensitivity: 10
   CamTransform: {fileID: 963194228}
+  CC: {fileID: 1737829028}
 --- !u!1 &1780184639
 GameObject:
   m_ObjectHideFlags: 0

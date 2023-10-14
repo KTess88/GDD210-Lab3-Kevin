@@ -7,8 +7,9 @@ public class PlayerController : MonoBehaviour
 {
 	public float MouseSensitivity;
 	public Transform CamTransform;
+	public CharacterController CC;
 
-	
+	private float camRotation = 0f;
 
 	private void Start()
 	{
@@ -17,11 +18,13 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-		float xmouseinput = Input.GetAxis("Mouse X");
-		float ymouseinput = Input.GetAxis("Mouse Y");
+		float mouseInputY = Input.GetAxis("Mouse Y") * MouseSensitivity * Time.deltaTime;
+		camRotation -= mouseInputY;
+		camRotation = Mathf.Clamp(camRotation, -90f, 90f);
+		CamTransform.localRotation = Quaternion.Euler(camRotation, 0f, 0f);
 
-		transform.Rotate(new Vector3(0, xmouseinput * MouseSensitivity, 0));
-		CamTransform.Rotate(new Vector3(-ymouseinput * MouseSensitivity, 0, 0));
+		float mouseInputX = Input.GetAxis("Mouse X") * MouseSensitivity * Time.deltaTime;
+		transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0f, mouseInputX));
 
 		RaycastHit hit;
 
