@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
 					SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
+					Cursor.lockState = CursorLockMode.None;
 
 				}
 			}
